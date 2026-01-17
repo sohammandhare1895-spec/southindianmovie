@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heparth - South Indian Cinema Streaming Hub</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Simple Analytics (Privacy Friendly) -->
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" /></noscript>
+    
+    <style>
+        /* ====== RESET & BASE STYLES ====== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #fff8f0 100%);
+            color: #1a202c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Made with Love Sticker */
+        .india-love-sticker {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
+            z-index: 1000;
+            animation: floatSticker 3s ease-in-out infinite;
+            transform-origin: center;
+            border: 3px solid white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .india-love-sticker .heart {
+            color: #ff4757;
+            animation: heartbeat 1.2s infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
+        }
+        
+        .india-love-sticker .flag {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(to bottom, #ff9933 33%, white 33%, white 66%, #138808 66%);
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .india-love-sticker .flag::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: #000080;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+        
+        @keyframes floatSticker {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* ====== UTILITY CLASSES ====== */
+        .btn-primary {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
+            background: linear-gradient(135deg, #c53030, #9b2c2c);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 1.05rem;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        
+        .platform-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* ====== HEADER STYLES ====== */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+            z-index: 100;
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, #e53e3e, #ed8936);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 20px rgba(229, 62, 62, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: 'ஹெ';
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e53e3e, #9c4221);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: #718096;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+        
+        .nav-link {
+            color: #4a5568;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #e53e3e;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e53e3e, #ed8936);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        /* ====== HERO SECTION ====== */
+        .hero {
+            background: linear-gradient(135deg, 
+                rgba(229, 62, 62, 0.95) 0%, 
+                rgba(196, 48, 48, 0.95) 50%, 
+                rgba(155, 44, 44, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" opacity="0.1"><path fill="white" d="M0,0V600H1200V0ZM200,200H400V400H200ZM800,200H1000V400H800Z"/></svg>');
+            color: white;
+            padding: 8rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, white, #fed7d7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+        
+        /* Language Badges in Hero */
+        .language-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .language-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .language-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+        
+        /* ====== SHOW CARD ====== */
+        .show-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .show-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(229, 62, 62, 0.15);
+            border-color: #fed7d7;
+        }
+        
+        .show-image-container {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+        
+        .show-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .show-card:hover .show-image {
+            transform: scale(1.1);
+        }
+        
+        .platform-badge-top {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+        }
+        
+        .show-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .show-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .show-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            line-height: 1.3;
+            flex: 1;
+            margin-right: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ed8936;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(237, 137, 54, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            min-width: 70px;
+            justify-content: center;
+        }
+        
+        .show-description {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .genre-tag {
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            color: #4a5568;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .genre-tag:hover {
+            background: linear-gradient(135deg, #e53e3e, #ed8936);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+        
+        .show-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .language-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f7fafc;
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        /* ====== FOOTER ====== */
+        .footer {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            color: white;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e53e3e, transparent);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #e53e3e, #ed8936);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+        }
+        
+        .footer-text {
+            color: #a0aec0;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .footer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-link {
+            color: #a0aec0;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-link:hover {
+            color: #e53e3e;
+            padding-left: 0.5rem;
+        }
+        
+        .newsletter {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #e53e3e;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .email-input::placeholder {
+            color: #a0aec0;
+        }
+        
+        /* ====== GRID LAYOUTS ====== */
+        .shows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .section {
+            padding: 6rem 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #2d3748;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, #e53e3e, #ed8936);
+            border-radius: 3px;
+        }
+        
+        /* ====== PLATFORM FILTER ====== */
+        .platform-filter {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .platform-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .platform-btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            border: 2px solid;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .platform-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-btn i {
+            font-size: 1.1rem;
+        }
+        
+        /* ====== CALCULATOR ====== */
+        .calculator {
+            background: linear-gradient(135deg, white, #fef5f5);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(229, 62, 62, 0.15);
+            border: 1px solid #fed7d7;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calculator::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229, 62, 62, 0.05) 0%, transparent 70%);
+        }
+        
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .calculator-inputs {
+                flex-direction: row;
+            }
+        }
+        
+        .calculator-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .calculator-input:focus {
+            outline: none;
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+        }
+        
+        /* ====== ICONS ====== */
+        .icon {
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+        
+        .icon-small {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        
+        /* ====== MOBILE MENU ====== */
+        .mobile-menu-btn {
+            display: block;
+            padding: 0.5rem;
+            background: linear-gradient(135deg, #e53e3e, #ed8936);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(229, 62, 62, 0.25);
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+        
+        .mobile-menu {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ====== UTILITY ====== */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .mt-8 {
+            margin-top: 2rem;
+        }
+        
+        .bg-gray-50 {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .md\:flex {
+                display: flex;
+            }
+        }
+        
+        /* ====== PLATFORM COLORS ====== */
+        .netflix { background: linear-gradient(135deg, #E50914, #B81D24); color: white; }
+        .prime { background: linear-gradient(135deg, #00A8E1, #007EB9); color: white; }
+        .hotstar { background: linear-gradient(135deg, #122C6A, #0A1A44); color: white; }
+        .sonyliv { background: linear-gradient(135deg, #0072CE, #0055A4); color: white; }
+        .aha { background: linear-gradient(135deg, #FF6B6B, #EE5A24); color: white; }
+        
+        /* ====== AD PLACEMENTS ====== */
+        .ad-unit {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border: 2px dashed #cbd5e0;
+            padding: 3rem;
+            text-align: center;
+            color: #718096;
+            margin: 2rem 0;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .ad-unit:hover {
+            border-color: #e53e3e;
+            background: linear-gradient(135deg, #fef5f5, #fed7d7);
+            color: #e53e3e;
+        }
+        
+        /* ====== BADGE ANIMATIONS ====== */
+        .hot-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* ====== RESPONSIVE ADJUSTMENTS ====== */
+        @media (max-width: 768px) {
+            .shows-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                padding: 5rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .calculator {
+                padding: 2rem;
+            }
+            
+            .india-love-sticker {
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.9rem;
+                padding: 12px 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .india-love-sticker {
+                bottom: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 10px 14px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* ====== SCROLLBAR STYLING ====== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #e53e3e, #ed8936);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #c53030, #dd6b20);
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== MADE WITH LOVE STICKER ====== -->
+    <div class="india-love-sticker">
+        <div class="heart">❤️</div>
+        Made with love
+        <div class="flag"></div>
+        in India
+    </div>
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#home" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>heparth</h1>
+                    <p>SOUTH INDIAN CINEMA HUB</p>
+                </div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#new" class="nav-link">New Releases</a>
+                <a href="#top" class="nav-link">Top Rated</a>
+                <a href="#platforms" class="nav-link">Platforms</a>
+                <a href="#coming" class="nav-link">Coming Soon</a>
+                <a href="#calculator" class="nav-link">Watch Calculator</a>
+                <button class="btn-primary hidden md:flex">
+                    <i class="fas fa-bell"></i>
+                    Get Updates
+                </button>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="btn-primary hidden md:flex">
+                    <i class="fas fa-bell"></i>
+                    Get Updates
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" x2="21" y1="6" y2="6"></line>
+                        <line x1="3" x2="21" y1="12" y2="12"></line>
+                        <line x1="3" x2="21" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#new" class="nav-link block py-3 border-b border-gray-100">New Releases</a>
+            <a href="#top" class="nav-link block py-3 border-b border-gray-100">Top Rated</a>
+            <a href="#platforms" class="nav-link block py-3 border-b border-gray-100">Platforms</a>
+            <a href="#coming" class="nav-link block py-3 border-b border-gray-100">Coming Soon</a>
+            <a href="#calculator" class="nav-link block py-3">Watch Calculator</a>
+            <button class="btn-primary mt-6 w-full">
+                <i class="fas fa-bell"></i>
+                Get Updates
+            </button>
+        </div>
+    </header>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Experience South Indian Cinema Like Never Before</h1>
+            <p class="hero-subtitle">
+                Your ultimate guide to Tamil, Telugu, Malayalam & Kannada movies streaming on Netflix, Prime, Hotstar & more. Curated specifically for Indian audiences.
+            </p>
+            
+            <div class="language-badges">
+                <div class="language-badge">
+                    <i class="fas fa-film"></i>
+                    Tamil Cinema
+                </div>
+                <div class="language-badge">
+                    <i class="fas fa-theater-masks"></i>
+                    Telugu Movies
+                </div>
+                <div class="language-badge">
+                    <i class="fas fa-video"></i>
+                    Malayalam Films
+                </div>
+                <div class="language-badge">
+                    <i class="fas fa-camera-movie"></i>
+                    Kannada Classics
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="exploreMovies()">
+                    <i class="fas fa-play-circle"></i>
+                    Explore 1000+ Movies
+                </button>
+                <button class="btn-secondary" onclick="scrollToCalculator()">
+                    <i class="fas fa-calculator"></i>
+                    Try Watch Calculator
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== AD UNIT 1 ====== -->
+    <div class="container ad-unit">
+        <i class="fas fa-ad" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+        <p>Support Heparth by viewing this ad</p>
+        <small>Advertisement space for relevant brands</small>
+    </div>
+
+    <!-- ====== PLATFORM FILTER ====== -->
+    <section class="section">
+        <div class="container">
+            <div class="platform-filter">
+                <h3 class="text-lg font-semibold mb-4" style="font-size: 1.3rem; color: #2d3748;">Browse by Platform:</h3>
+                <div class="platform-buttons" id="platformButtons">
+                    <!-- Platforms will be added by JavaScript -->
+                </div>
+            </div>
+
+            <!-- ====== FEATURED MOVIES ====== -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="section-title">🔥 This Week's Must-Watch</h2>
+                    <a href="#" class="text-red-600 font-semibold hover:underline" style="font-size: 1.1rem; font-weight: 600;">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="shows-grid" id="featuredMovies">
+                    <!-- Movies will be added by JavaScript -->
+                </div>
+            </div>
+
+            <!-- ====== NEW RELEASES ====== -->
+            <div class="bg-gray-50 -mx-4 px-4 py-12" style="border-radius: 0; background: linear-gradient(135deg, #fef5f5, #fff8f0);">
+                <div class="container">
+                    <h2 class="section-title mb-8">🎬 Fresh on Streaming</h2>
+                    <div class="shows-grid" id="newReleases">
+                        <!-- New releases will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== AD UNIT 2 ====== -->
+    <div class="container ad-unit">
+        <i class="fas fa-ad" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+        <p>Your ad could be here</p>
+        <small>Reach passionate South Indian cinema fans</small>
+    </div>
+
+    <!-- ====== WATCH CALCULATOR ====== -->
+    <section class="section" id="calculator">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="section-title mb-4">Plan Your Movie Marathon</h2>
+                <p class="text-gray-600 mb-8" style="font-size: 1.1rem; color: #4a5568;">
+                    Calculate exactly how long it takes to watch any South Indian movie or series
+                </p>
+                <div class="calculator">
+                    <div class="calculator-inputs">
+                        <input type="text" id="movieInput" placeholder="Enter movie name (e.g., Ponniyin Selvan, RRR)" class="calculator-input">
+                        <button class="btn-primary" onclick="calculateWatchTime()">
+                            <i class="fas fa-calculator"></i>
+                            Calculate
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4" id="result" style="font-size: 1rem; padding: 1rem; background: #f7fafc; border-radius: 10px;">
+                        Try "RRR" - 187 minutes = Perfect for a movie night!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>heparth</h3>
+                    <p class="footer-text">
+                        Your ultimate companion for discovering and streaming South Indian cinema across all platforms. We bring you the best of Tamil, Telugu, Malayalam & Kannada movies.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-list">
+                        <li><a href="#new" class="footer-link">New Releases</a></li>
+                        <li><a href="#platforms" class="footer-link">Platform Guide</a></li>
+                        <li><a href="#calculator" class="footer-link">Watch Calculator</a></li>
+                        <li><a href="#submit" class="footer-link">Submit a Movie</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-list">
+                        <li><a href="#privacy" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#terms" class="footer-link">Terms of Service</a></li>
+                        <li><a href="#cookies" class="footer-link">Cookie Policy</a></li>
+                        <li><a href="#affiliate" class="footer-link">Affiliate Disclosure</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Updated</h4>
+                    <p class="footer-text mb-4">
+                        Weekly picks of the best South Indian movies
+                    </p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email" class="email-input">
+                        <button class="btn-primary" style="padding: 0.75rem 1.5rem;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="footer-link" style="font-size: 1.3rem;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer-link" style="font-size: 1.3rem;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer-link" style="font-size: 1.3rem;">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="footer-link" style="font-size: 1.3rem;">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p class="flex items-center justify-center gap-2 mb-2" style="font-size: 1rem;">
+                    <span>Curated with</span>
+                    <i class="fas fa-heart" style="color: #ff4757; animation: heartbeat 1.2s infinite;"></i>
+                    <span>for South Indian cinema lovers</span>
+                </p>
+                <p class="mb-2" style="font-size: 0.95rem;">
+                    © <span id="currentYear"></span> heparth.co.in | An independent guide to South Indian streaming
+                </p>
+                <p class="text-sm mb-2" style="color: #a0aec0;">
+                    Netflix, Amazon Prime, Disney+ Hotstar, SonyLIV are trademarks of their respective owners.
+                </p>
+                <p class="text-xs text-gray-500 max-w-2xl mx-auto" style="line-height: 1.6;">
+                    Heparth participates in affiliate programs. We may earn commissions when you click links and make purchases. This helps support our site at no extra cost to you.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // ====== DATA ======
+        const movies = [
+            {
+                id: 1,
+                title: "Ponniyin Selvan: I",
+                description: "A historical epic about the early life of Rajaraja Chola, one of the greatest kings of South India.",
+                rating: 8.5,
+                duration: "167 min",
+                platform: "prime",
+                language: "Tamil",
+                genres: ["Historical", "Drama", "Epic"],
+                addedDate: "2024-01-15",
+                image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&h=300&fit=crop",
+                watchLink: "https://www.primevideo.com/",
+                dubbedLanguages: ["Hindi", "Telugu", "Malayalam"],
+                isHot: true
+            },
+            {
+                id: 2,
+                title: "RRR",
+                description: "A fictional story about two Indian revolutionaries and their journey away from home.",
+                rating: 9.0,
+                duration: "187 min",
+                platform: "netflix",
+                language: "Telugu",
+                genres: ["Action", "Drama", "Historical"],
+                addedDate: "2024-01-10",
+                image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
+                watchLink: "https://www.netflix.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Malayalam", "Kannada"],
+                isHot: true
+            },
+            {
+                id: 3,
+                title: "Kantara",
+                description: "A story about culture, tradition and beliefs of people living in a fictional village.",
+                rating: 8.8,
+                duration: "148 min",
+                platform: "prime",
+                language: "Kannada",
+                genres: ["Thriller", "Drama", "Mystery"],
+                addedDate: "2024-01-05",
+                image: "https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=400&h=300&fit=crop",
+                watchLink: "https://www.primevideo.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Telugu", "Malayalam"],
+                isHot: true
+            },
+            {
+                id: 4,
+                title: "Vikram",
+                description: "A high-octane action film where a special investigator uncovers a drug cartel.",
+                rating: 8.6,
+                duration: "175 min",
+                platform: "hotstar",
+                language: "Tamil",
+                genres: ["Action", "Thriller"],
+                addedDate: "2024-01-12",
+                image: "https://images.unsplash.com/photo-1551029506-0807df4e2031?w=400&h=300&fit=crop",
+                watchLink: "https://www.hotstar.com/",
+                dubbedLanguages: ["Hindi", "Telugu", "Malayalam"],
+                isHot: false
+            },
+            {
+                id: 5,
+                title: "Premam",
+                description: "A romantic drama following a man through three stages of his life.",
+                rating: 8.9,
+                duration: "156 min",
+                platform: "sonyliv",
+                language: "Malayalam",
+                genres: ["Romance", "Drama", "Comedy"],
+                addedDate: "2024-01-08",
+                image: "https://images.unsplash.com/photo-1543536448-d209d2d13a1c?w=400&h=300&fit=crop",
+                watchLink: "https://www.sonyliv.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Telugu"],
+                isHot: false
+            },
+            {
+                id: 6,
+                title: "Pushpa: The Rise",
+                description: "A laborer rises through the ranks of a red sandalwood smuggling syndicate.",
+                rating: 8.2,
+                duration: "179 min",
+                platform: "prime",
+                language: "Telugu",
+                genres: ["Action", "Drama", "Crime"],
+                addedDate: "2024-01-18",
+                image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&h=300&fit=crop",
+                watchLink: "https://www.primevideo.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Malayalam", "Kannada"],
+                isHot: true
+            },
+            {
+                id: 7,
+                title: "Drishyam 2",
+                description: "The Salgaonkar family faces new challenges when an investigation reopens.",
+                rating: 8.7,
+                duration: "152 min",
+                platform: "hotstar",
+                language: "Malayalam",
+                genres: ["Thriller", "Drama", "Mystery"],
+                addedDate: "2024-01-14",
+                image: "https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?w=400&h=300&fit=crop",
+                watchLink: "https://www.hotstar.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Telugu", "Kannada"],
+                isHot: false
+            },
+            {
+                id: 8,
+                title: "KGF: Chapter 2",
+                description: "Rocky continues his rise to power as he seeks to become the king of the gold mines.",
+                rating: 8.9,
+                duration: "168 min",
+                platform: "prime",
+                language: "Kannada",
+                genres: ["Action", "Drama", "Crime"],
+                addedDate: "2024-01-20",
+                image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
+                watchLink: "https://www.primevideo.com/",
+                dubbedLanguages: ["Hindi", "Tamil", "Telugu", "Malayalam"],
+                isHot: true
+            }
+        ];
+
+        const platforms = [
+            { id: 'all', name: 'All Platforms', color: '#718096', icon: 'fas fa-layer-group' },
+            { id: 'netflix', name: 'Netflix', color: '#E50914', icon: 'fas fa-play' },
+            { id: 'prime', name: 'Prime Video', color: '#00A8E1', icon: 'fab fa-amazon' },
+            { id: 'hotstar', name: 'Disney+ Hotstar', color: '#122C6A', icon: 'fas fa-star' },
+            { id: 'sonyliv', name: 'SonyLIV', color: '#0072CE', icon: 'fas fa-tv' },
+            { id: 'aha', name: 'Aha', color: '#FF6B6B', icon: 'fas fa-video' },
+        ];
+
+        // ====== FUNCTIONS ======
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            
+            // Close menu when clicking outside
+            if (menu.classList.contains('active')) {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+        
+        function closeMenuOnClickOutside(event) {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.mobile-menu-btn');
+            
+            if (!menu.contains(event.target) && !button.contains(event.target)) {
+                menu.classList.remove('active');
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+            
+            // Add a subtle animation to the calculator
+            setTimeout(() => {
+                const calculator = document.querySelector('.calculator');
+                calculator.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    calculator.style.transform = 'scale(1)';
+                }, 300);
+            }, 500);
+        }
+
+        function exploreMovies() {
+            // Animate the featured movies grid
+            const grid = document.getElementById('featuredMovies');
+            grid.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                grid.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Show notification
+            showNotification('Loading 1000+ South Indian movies...', 'info');
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'info' ? '#3182ce' : '#e53e3e'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                font-weight: 500;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+            
+            // Add animation keyframes
+            if (!document.getElementById('notificationAnimations')) {
+                const style = document.createElement('style');
+                style.id = 'notificationAnimations';
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOutRight {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function calculateWatchTime() {
+            const movieInput = document.getElementById('movieInput').value.trim();
+            const resultElement = document.getElementById('result');
+            
+            if (!movieInput) {
+                resultElement.textContent = 'Please enter a movie name. Try "RRR" - 187 minutes = Perfect for a movie night!';
+                resultElement.style.color = '#e53e3e';
+                resultElement.style.background = '#fed7d7';
+                return;
+            }
+            
+            // Find movie in our data
+            const foundMovie = movies.find(movie => 
+                movie.title.toLowerCase().includes(movieInput.toLowerCase()) ||
+                movieInput.toLowerCase().includes(movie.title.toLowerCase())
+            );
+            
+            if (foundMovie) {
+                const hours = Math.floor(parseInt(foundMovie.duration) / 60);
+                const minutes = parseInt(foundMovie.duration) % 60;
+                resultElement.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                        <div style="font-size: 2rem;">🎬</div>
+                        <div>
+                            <strong style="color: #2d3748;">${foundMovie.title}</strong>
+                            <div style="color: #718096; font-size: 0.9rem;">${foundMovie.language} • ${foundMovie.duration}</div>
+                        </div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #e53e3e, #ed8936); color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600;">
+                        ${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} and ` : ''}${minutes} minutes of pure entertainment!
+                    </div>
+                `;
+                resultElement.style.background = '#f7fafc';
+                resultElement.style.color = '#4a5568';
+            } else {
+                // Generate random calculation for unknown movies
+                const randomDuration = Math.floor(Math.random() * 120) + 90;
+                const hours = Math.floor(randomDuration / 60);
+                const minutes = randomDuration % 60;
+                
+                resultElement.innerHTML = `
+                    <div style="color: #2d3748; margin-bottom: 10px; font-weight: 600;">
+                        "${movieInput}"
+                    </div>
+                    <div style="background: linear-gradient(135deg, #38a169, #2f855a); color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600;">
+                        Estimated: ${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} and ` : ''}${minutes} minutes
+                    </div>
+                    <div style="color: #718096; font-size: 0.9rem; margin-top: 10px;">
+                        <i class="fas fa-info-circle"></i> Based on average South Indian movie duration
+                    </div>
+                `;
+                resultElement.style.background = '#f0fff4';
+            }
+            
+            // Add celebration effect
+            resultElement.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                resultElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        function renderPlatformButtons() {
+            const container = document.getElementById('platformButtons');
+            container.innerHTML = '';
+            
+            platforms.forEach(platform => {
+                const button = document.createElement('button');
+                button.className = 'platform-btn';
+                button.style.borderColor = platform.color;
+                button.style.color = platform.color;
+                button.innerHTML = `<i class="${platform.icon}"></i> ${platform.name}`;
+                button.onclick = () => filterMovies(platform.id);
+                
+                // Add active state to "All Platforms"
+                if (platform.id === 'all') {
+                    button.style.background = `linear-gradient(135deg, ${platform.color}, ${platform.color}dd)`;
+                    button.style.color = 'white';
+                }
+                
+                container.appendChild(button);
+            });
+        }
+
+        function renderMovieCard(movie, compact = false) {
+            const platformColors = {
+                'netflix': 'netflix',
+                'prime': 'prime',
+                'hotstar': 'hotstar',
+                'sonyliv': 'sonyliv',
+                'aha': 'aha'
+            };
+            
+            const languageColors = {
+                'Tamil': '#e53e3e',
+                'Telugu': '#3182ce',
+                'Malayalam': '#38a169',
+                'Kannada': '#805ad5'
+            };
+            
+            return `
+                <div class="show-card">
+                    ${movie.isHot ? `<div class="hot-badge">HOT NOW</div>` : ''}
+                    <div class="show-image-container">
+                        <img src="${movie.image}" alt="${movie.title}" class="show-image">
+                        <div class="platform-badge-top">
+                            <span class="platform-badge ${platformColors[movie.platform] || ''}">
+                                <i class="${platforms.find(p => p.id === movie.platform)?.icon || 'fas fa-play'}"></i>
+                                ${movie.platform.charAt(0).toUpperCase() + movie.platform.slice(1)}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="show-content">
+                        <div class="show-header">
+                            <h3 class="show-title">${movie.title}</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>${movie.rating}</span>
+                            </div>
+                        </div>
+                        <p class="show-description">${movie.description}</p>
+                        
+                        <div class="genres">
+                            ${movie.genres.map(genre => 
+                                `<span class="genre-tag">${genre}</span>`
+                            ).join('')}
+                        </div>
+                        
+                        <div class="show-footer">
+                            <div class="language-info" style="color: ${languageColors[movie.language] || '#718096'};">
+                                <i class="fas fa-language"></i>
+                                ${movie.language}
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-clock" style="color: #718096;"></i>
+                                <span style="font-weight: 600;">${movie.duration}</span>
+                            </div>
+                        </div>
+                        
+                        ${!compact ? `
+                            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                                <button class="flex-1 py-3 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300"
+                                        onclick="showMovieDetails(${movie.id})">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Details
+                                </button>
+                                <a href="${movie.watchLink}" target="_blank" 
+                                   class="flex-1 text-center py-3 btn-primary"
+                                   onclick="trackWatchClick(${movie.id})">
+                                    <i class="fas fa-play mr-2"></i>
+                                    Watch Now
+                                </a>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showMovieDetails(movieId) {
+            const movie = movies.find(m => m.id === movieId);
+            if (!movie) return;
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 20px;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 20px; max-width: 500px; width: 100%; overflow: hidden; animation: slideUp 0.3s ease;">
+                    <div style="background: linear-gradient(135deg, #e53e3e, #ed8936); padding: 2rem; color: white; position: relative;">
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                                style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;">
+                            ×
+                        </button>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">${movie.title}</h3>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <span style="background: rgba(255,255,255,0.2); padding: 0.3rem 1rem; border-radius: 20px; font-weight: 600;">
+                                ${movie.language}
+                            </span>
+                            <span style="display: flex; align-items: center; gap: 0.3rem;">
+                                <i class="fas fa-star"></i> ${movie.rating}
+                            </span>
+                            <span>
+                                <i class="fas fa-clock"></i> ${movie.duration}
+                            </span>
+                        </div>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <p style="color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;">${movie.description}</p>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: #2d3748; font-weight: 600; margin-bottom: 0.5rem;">Available In:</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                ${movie.dubbedLanguages.map(lang => `
+                                    <span style="background: #f7fafc; color: #4a5568; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; border: 1px solid #e2e8f0;">
+                                        ${lang}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <a href="${movie.watchLink}" target="_blank" 
+                               style="flex: 1; background: linear-gradient(135deg, #e53e3e, #c53030); color: white; text-align: center; padding: 1rem; border-radius: 12px; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"
+                               onclick="trackWatchClick(${movie.id})">
+                                <i class="fas fa-play"></i> Watch Now
+                            </a>
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()"
+                                    style="flex: 1; background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 12px; font-weight: 600; cursor: pointer;">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Add animation styles
+            if (!document.getElementById('modalAnimations')) {
+                const style = document.createElement('style');
+                style.id = 'modalAnimations';
+                style.textContent = `
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    @keyframes slideUp {
+                        from { transform: translateY(50px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Close on escape key
+            const closeModal = (e) => {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', closeModal);
+                }
+            };
+            document.addEventListener('keydown', closeModal);
+            
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                    document.removeEventListener('keydown', closeModal);
+                }
+            });
+        }
+        
+        function trackWatchClick(movieId) {
+            console.log(`Tracking watch click for movie ${movieId}`);
+            // In production, send this to analytics
+            showNotification('Opening streaming platform...', 'info');
+        }
+
+        function renderMovies() {
+            const featuredContainer = document.getElementById('featuredMovies');
+            const newReleasesContainer = document.getElementById('newReleases');
+            
+            // Featured movies (first 4)
+            featuredContainer.innerHTML = movies.slice(0, 4).map(movie => renderMovieCard(movie)).join('');
+            
+            // New releases (sorted by date)
+            const sortedMovies = [...movies].sort((a, b) => 
+                new Date(b.addedDate) - new Date(a.addedDate)
+            );
+            newReleasesContainer.innerHTML = sortedMovies.slice(0, 8).map(movie => renderMovieCard(movie, true)).join('');
+        }
+
+        function filterMovies(platformId) {
+            const filteredMovies = platformId === 'all' 
+                ? movies 
+                : movies.filter(movie => movie.platform === platformId);
+            
+            const featuredContainer = document.getElementById('featuredMovies');
+            featuredContainer.innerHTML = filteredMovies.slice(0, 4).map(movie => renderMovieCard(movie)).join('');
+            
+            // Update platform button styles
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                const isActive = btn.textContent.toLowerCase().includes(platformId);
+                if (isActive) {
+                    const platform = platforms.find(p => p.id === platformId);
+                    btn.style.background = `linear-gradient(135deg, ${platform.color}, ${platform.color}dd)`;
+                    btn.style.color = 'white';
+                    btn.style.transform = 'translateY(-3px)';
+                    btn.style.boxShadow = `0 10px 20px ${platform.color}40`;
+                } else {
+                    const platform = platforms.find(p => btn.textContent.toLowerCase().includes(p.id));
+                    if (platform) {
+                        btn.style.background = 'white';
+                        btn.style.color = platform.color;
+                        btn.style.transform = 'translateY(0)';
+                        btn.style.boxShadow = 'none';
+                    }
+                }
+            });
+            
+            // Show notification
+            const platformName = platforms.find(p => p.id === platformId)?.name || 'All Platforms';
+            showNotification(`Showing movies from ${platformName}`, 'info');
+        }
+
+        // ====== INITIALIZATION ======
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Render platform buttons
+            renderPlatformButtons();
+            
+            // Render movies
+            renderMovies();
+            
+            // Add enter key support for calculator
+            document.getElementById('movieInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateWatchTime();
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        if (mobileMenu.classList.contains('active')) {
+                            toggleMobileMenu();
+                        }
+                    }
+                });
+            });
+            
+            // Add loading animation
+            showNotification('Welcome to Heparth! Your South Indian cinema hub is ready.', 'info');
+            
+            // Initialize page view tracking
+            console.log('Heparth.co.in - South Indian Cinema Hub loaded successfully!');
+            
+            // Add some interactive effects
+            addInteractiveEffects();
+        });
+        
+        function addInteractiveEffects() {
+            // Add hover effects to movie cards
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.closest('.show-card')) {
+                    const card = e.target.closest('.show-card');
+                    const title = card.querySelector('.show-title');
+                    if (title) {
+                        title.style.color = '#e53e3e';
+                    }
+                }
+            });
+            
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.closest('.show-card')) {
+                    const card = e.target.closest('.show-card');
+                    const title = card.querySelector('.show-title');
+                    if (title) {
+                        title.style.color = '#2d3748';
+                    }
+                }
+            });
+            
+            // Add click sound effect (optional)
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-primary') || e.target.closest('.platform-btn')) {
+                    // You could add a subtle click sound here
+                    console.log('Interactive click detected');
+                }
+            });
+        }
+
+        // ====== MONETIZATION FUNCTIONS ======
+        function loadGoogleAdSense() {
+            // This would load Google AdSense script
+            console.log('AdSense loaded (placeholder)');
+        }
+
+        // ====== AUTO-RUN FUNCTIONS ======
+        // Add some automatic animations
+        setTimeout(() => {
+            const sticker = document.querySelector('.india-love-sticker');
+            if (sticker) {
+                sticker.style.transform = 'rotate(5deg)';
+                setTimeout(() => {
+                    sticker.style.transform = 'rotate(-5deg)';
+                    setTimeout(() => {
+                        sticker.style.transform = 'rotate(0deg)';
+                    }, 300);
+                }, 300);
+            }
+        }, 1000);
+
+        // Random movie suggestion
+        setInterval(() => {
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+            const suggestions = [
+                `Have you watched "${randomMovie.title}" yet?`,
+                `"${randomMovie.title}" is trending now!`,
+                `Check out "${randomMovie.title}" on ${randomMovie.platform.toUpperCase()}`,
+                `Perfect time to watch "${randomMovie.title}"!`
+            ];
+            
+            // Randomly show suggestion (10% chance)
+            if (Math.random() < 0.1) {
+                showNotification(suggestions[Math.floor(Math.random() * suggestions.length)], 'info');
+            }
+        }, 30000); // Every 30 seconds
+    </script>
+</body>
+</html>
